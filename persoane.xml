@@ -11,5 +11,42 @@
             <judet>Iasi</judet>
             <tara>Romania</tara>
         </adresa>
+        <inaltime>1 60</inaltime>
+        <ocupatie>Inginer</ocupatie>
+        <limba_materna>Romana</limba_materna>
+        <limbi_straine>Engleza, Spaniola</limbi_straine>
     </persoana>
+    <persoana id="2">
+        <nume>Popa</nume>
+        <prenume>Andreea</prenume>
+        <varsta>25</varsta>
+        <adresa>
+            <strada>Facultatii</strada>
+            <numar>10</numar>
+            <localitate>Iasi</localitate>
+            <judet>Iasi</judet>
+            <tara>Romania</tara>
+        </adresa>
+        <inaltime>1 54</inaltime>
+        <ocupatie>Profesor</ocupatie>
+        <limba_materna>Romana</limba_materna>
+        <limbi_straine>Germana</limbi_straine>
+    </persoana>
+    <persoana id="3">
+        <nume>Plopan</nume>
+        <prenume>Andra</prenume>
+        <varsta>20</varsta>
+        <adresa>
+            <strada>Caminului</strada>
+            <numar>11</numar>
+            <localitate>Iasi</localitate>
+            <judet>Iasi</judet>
+            <tara>Romania</tara>
+        </adresa>
+        <inaltime>1 55</inaltime>
+        <ocupatie>Student</ocupatie>
+        <limba_materna>Romana</limba_materna>
+        <limbi_straine>Engleza</limbi_straine>
+    </persoana>
+
 </persoane>
