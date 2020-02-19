@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT persoane (persoana+)>
+<!ELEMENT persoana (nume, prenume, varsta, adresa+, inaltime, ocupatie, limba_materna, limbi_straine)>
+<!ATTLIST persoana id CDATA #REQUIRED>
+<!ELEMENT adresa (strada,numar, localitate, judet, tara)>
+<!ELEMENT nume (#PCDATA)>
+<!ELEMENT prenume (#PCDATA)>
+<!ELEMENT varsta (#PCDATA)>
+<!ELEMENT strada (#PCDATA)>
+<!ELEMENT numar (#PCDATA)>
+<!ELEMENT localitate (#PCDATA)>
+<!ELEMENT judet (#PCDATA)>
+<!ELEMENT tara (#PCDATA)>
+<!ELEMENT inaltime (#PCDATA)>
+<!ELEMENT ocupatie (#PCDATA)>
+<!ELEMENT limba_materna (#PCDATA)>
+<!ELEMENT limbi_straine (#PCDATA)>
