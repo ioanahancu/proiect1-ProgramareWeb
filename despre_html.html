@@ -36,5 +36,33 @@
         <b>Observatie:</b> Pentru a pune un contur unui tabel se poate (dar nu se recomanda) sa se puna atributul <small>border="1"</small>.
         <br />
         La validare va da eroarea: <i>The border attribute on the table element is obsolete.</i>
+        <br />
+        <br />
+        Formularele se pot crea cu ajutorul tag-ului <small>form</small> care poate contine tag-urile: <small>input, textarea, label, select, option, button.</small>
+        <br />
+        Pentru mai multe detalii consultati cursul sau tutorialul <a href="http://www.w3schools.com/html/html_forms.asp">HTML Forms and Inputs</a> de la adresa <a href="http://www.w3schools.com/html/html_forms.asp">http://www.w3schools.com/html/html_forms.asp</a>.
+        <br />
+        <br />
+        Un exemplu de formular este urmatorul:
+        <form>
+            <label for="lname">Nume:</label>
+            <input type="text" id="lname" name="lname" value="nume"><br/>
+            <label for="fname">Preume:</label>
+            <input type="text" id="fname" name="fname" value="prenume"><br/>
+            <label for="parola">Parola:</label>
+            <input type="password" id="parola" name="parola" value="***"><br/>
+            <label for="culoare">Culoare preferata:</label>
+            <select id="culoare" name="culoare">
+                <option value="rosu">rosu</option>
+                <option value="verde">verde</option>
+                <option value="negru">negru</option>
+            </select><br />
+            <label for="descriere">Descriere:</label>
+            <textarea rows="2" cols="3" name="descriere"></textarea><br/>
+            <input type="checkbox" id="confirm" name="confirm" value="Sunt de acord cu conditiile">
+            <label for="confirm">Sunt de acord cu conditiile</label><br /> 
+            <br />
+            <button type="button">Inregistreaza</button>
+        </form>
     </body>
 </html>
