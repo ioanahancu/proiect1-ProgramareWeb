@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title> Inregistrare </title>
+</head>
+
+<body>
+    <header>
+        <h1> <img src="images/logo.jpg" alt="logo" height="150" width="200" />
+            Programare web cu red panda
+        </h1>
+    </header>
+    <nav>
+        <a href="index.html">Acasa</a> &nbsp; &nbsp; &nbsp;
+        <a href="inregistreaza.html">Inregistrare</a> &nbsp; &nbsp; &nbsp;
+        <a href="video.html">Video</a> &nbsp; &nbsp; &nbsp;
+        <a href="despre_html.html">Despre</a>
+    </nav>
+
+    <br >
+    <br >
+    <form>
+        <fieldset>
+            <legend>Informatii generale:</legend>
+
+            <label for="uname">Nume utilizator:</label>
+            <input type="text" id="uname" name="uname"><br><br>
+
+            <label for="password">Parola:</label>
+            <input type="password" id="password" name="password"><br><br>
+
+            <label for="lname">Nume:</label>
+            <input type="text" id="lname" name="lname"><br><br>
+
+            <label for="fname">Prenume:</label>
+            <input type="text" id="fname" name="fname"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+
+            <label for="telefon">Telefon:</label>
+            <input type="tel" id="telefon" name="telefon"><br><br>
+
+        </fieldset>
+
+        <br >
+        <br >
+
+        <fieldset>
+            <legend>Informatii personale:</legend>
+
+            <label for="sex">Sexul:</label>
+            <select id="sex">
+                <option label="Feminin">Feminin </option>
+                <option label="Masculin">Masculin</option>
+            </select>
+            <br >
+            <br >
+
+            <label for="mancare" >Mancarea preferata:</label>
+            <input list="food" id="mancare">
+            <datalist id="food">
+                <option value="Pizza">Pizza</option>  
+                <option value="Salata">Salata</option>
+                <option value="Cartofi prajiti">Cartofi Prajiti</option>
+            </datalist>
+            <br >
+            <br >
+            
+            <label for="culoare">Culoare preferata:</label>
+            <input type="color" id="culoare" name="culoare"><br><br>
+
+            <label for="data">Data nasterii:</label>
+            <input type="date" id="data" name="data"><br><br>
+
+            <label for="ora">Ora nasterii:</label>
+            <input type="time" id="ora" name="ora"><br><br>
+
+            <label for="varsta">Varsta:</label>
+            <input type="range" id="varsta" name="varsta"><br><br>
+
+            <label for="adresaurl">Adrea paginii personale:</label>
+            <input type="url" id="adresaurl" name="adresaurl"><br><br>
+
+            <label for="descriere">Descriere:</label>
+            <textarea id="descriere" name="descriere"></textarea><br><br>
+
+            
+        </fieldset>
+        <br >
+        <br >
+        <button type="submit" value="Submit" disabled>Inregistreaza</button>
+    </form>
+
+
+
+    <hr>
+    <footer>
+        <p> &copy; 2020.Programare web</p>
+    </footer>
+</body>
+
+</html>
