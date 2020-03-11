@@ -1,0 +1,63 @@
+header {
+    background-color: #C06C84;
+    color: #F8B195;
+}
+
+nav {
+    background-color: #6C5B7B;
+}
+
+nav a {
+    display: inline;
+    color: #F8B195;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+nav a:hover:not(.active) {
+    background-color: #355C7D;
+    color: #ffc011;
+}
+
+body {
+    background-color: #355C7D;
+    color: #F8B195;
+}
+
+footer {
+    background-color: #6C5B7B;
+}
+
+h1 {
+    border: 2px solid #6C5B7B;
+}
+
+tr:hover {
+    background-color: #6C5B7B;
+}
+
+table {
+    border-color: #6C5B7B;
+}
+
+input {
+    background-color: #6C5B7B;
+    color: #F8B195;
+    size: 15px;
+    text-align: center;
+    transition: width 0.4s ease-in-out;
+}
+
+input:focus {
+    background-color: #355C7D;
+    width: 100%;
+}
+
+textarea {
+    background-color: #6C5B7B;
+    color: #F8B195;
+}
+
+form {
+    border: #6C5B7B;
+}
