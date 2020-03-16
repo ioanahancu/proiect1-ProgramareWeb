@@ -1,10 +1,24 @@
-header {
+header, footer {
     background-color: #C06C84;
+    background-image: linear-gradient(#163957, #C06C84);
+
     color: #F8B195;
+    text-align: center;
 }
 
 nav {
     background-color: #6C5B7B;
+}
+
+p::first-letter{
+    color: #C06C84;
+    font-size: xx-large;
+}
+
+
+a:link
+{
+    color: #ffc011;
 }
 
 nav a {
@@ -19,25 +33,64 @@ nav a:hover:not(.active) {
     color: #ffc011;
 }
 
+nav a.active{
+    background-color: #C06C84;
+    background-image: linear-gradient(#163957, #C06C84);
+    color:#ffc011;
+}
+
 body {
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat ;
     background-color: #355C7D;
+    background-size: cover;
+    background-position: center;
     color: #F8B195;
 }
 
-footer {
-    background-color: #6C5B7B;
-}
 
 h1 {
     border: 2px solid #6C5B7B;
+
+}
+
+body>h1:hover{
+    width: 600px;
+    transition-timing-function: ease;
+}
+
+article h3 {
+    text-shadow: 2px 2px 5px #C06C84;
+}
+
+#hAnimat{
+    position: relative;
+    animation-name: animatie;
+    animation-duration: 6s;
+    animation-iteration-count: 2;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes animatie {
+    0% { left:0px; top:0px;}
+    25%{left:100px;top:0px;}
+    50%{left: 200px;top:0px;}
+    75%{left: 300px;top:0px;}
+    100%{left:0px;top:0px;}
+}
+
+h2:hover{
+    transform: scaleX(0.5);
 }
 
 tr:hover {
     background-color: #6C5B7B;
 }
 
-table {
-    border-color: #6C5B7B;
+table, td {
+    border: 1px solid #6C5B7B;
+    padding: 2px;
+    text-align: center;
 }
 
 input {
@@ -53,11 +106,53 @@ input:focus {
     width: 100%;
 }
 
-textarea {
+textarea, select {
     background-color: #6C5B7B;
     color: #F8B195;
 }
 
+
 form {
     border: #6C5B7B;
 }
+
+
+
+#grad1 {
+    background-color: #355C7D;
+    background-image: url("../images/video-background.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  ::selection{
+      color:#F8B195;
+      background:#6C5B7B ;
+  }
+
+@media screen and (max-width: 600px) {
+    nav a {
+      float: none;
+      display: block;
+      width: 100%;
+    }
+
+    div.flex-container{
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    
+}
+
+.flex-container{
+    display: flex;
+    background-color: #6C5B7B;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+
