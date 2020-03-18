@@ -79,7 +79,7 @@ article h3 {
     100%{left:0px;top:0px;}
 }
 
-h2:hover{
+#h2despre:hover{
     transform: scaleX(0.5);
 }
 
@@ -154,5 +154,16 @@ form {
     flex-direction: row;
     align-items: baseline;
     justify-content: space-evenly;
+}
+
+#meniuaside a:link{
+    color:#F8B195;
+    text-decoration: none;
+    font-size: large;
+}
+
+#meniuaside a:visited{
+    color:#F8B195;
+    text-emphasis: none;
 }
 
