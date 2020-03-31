@@ -1,5 +1,7 @@
 import socket
 import os
+import _thread
+import gzip
 
 def find(name, path):
     for root, dirs, files in os.walk(path):
@@ -7,6 +9,135 @@ def find(name, path):
             return os.path.join(root, name).replace('\\', '/')
         else:
             return -1
+
+def on_new_client(clientsocket, addr):
+    closed=0
+    print ('S-a conectat un client.')
+    # se proceseaza cererea si se citeste prima linie de text
+    cerere = ''
+    linieDeStart = ''
+    while True:
+        data = clientsocket.recv(1024)
+        if( len(data) < 1 ): 
+            break
+        cerere = cerere + data.decode()
+        print ('S-a citit mesajul: \n---------------------------\n' + cerere + '\n---------------------------')
+        pozitie = cerere.find('\r\n')
+        if (pozitie > -1 and linieDeStart == ''):
+            linieDeStart = cerere[0:pozitie]
+            print ('S-a citit linia de start din cerere: ##### ' + linieDeStart + ' #####')
+            break
+    print ('S-a terminat cititrea.')
+    if(linieDeStart == ''):
+        closed=1
+        clientsocket.close()
+        print('S-a terminat comunicarea cu clientul - nu s-a primit niciun mesaj.')
+	    
+
+    # TODO interpretarea sirului de caractere `linieDeStart` pentru a extrage numele resursei cerute
+
+    poz1=linieDeStart.find(" ") 
+    poz2=linieDeStart.find(" ",poz1+1)
+    numeResursa=linieDeStart[poz1+2:poz2]
+    if (numeResursa == ''):
+	    numeResursa = '/index.html'
+    
+    poz3=numeResursa.find("/")
+    if(poz3>-1):
+        numeResursa=numeResursa[poz3+1:]
+    print ('Numele resursei:' + numeResursa)
+    contentType = numeResursa[numeResursa.find('.')+1:]
+    print('Tip resursa: '+contentType)
+    ### Cerinta 1 ###
+    # clientsocket.sendall(str.encode('Hello World! - ' + numeResursa))
+
+    # TODO trimiterea răspunsului HTTP
+    linieStartRaspuns = '' 
+    ok=-1
+    fisierePosibile=['continut', 'continut/css', 'continut/images', 'continut/js']
+    k=0
+    pathOrig="C:/Users/Ioana/Documents/an3/sem2/PW/l6/proiect1-ioanahancu/"
+    path=pathOrig
+    while(k<4):
+        path += fisierePosibile[k]
+        ok = find(numeResursa, path)
+        if(ok!=-1):
+            #print('tu intri aici?')
+            k=5
+        else:
+            path=pathOrig
+        k+=1
+
+    
+    if (ok==-1 or ok==None):
+        linieStartRaspuns = 'HTTP/1.1 404 Not Found'
+
+    else:
+        linieStartRaspuns = "HTTP/1.1 200 OK"
+
+    f = None
+    try:
+        f=open(ok, 'rb')
+
+        print (linieStartRaspuns)
+        print ('\r\n')
+
+        clientsocket.sendall(str.encode(linieStartRaspuns + '\r\n'))
+        clientsocket.sendall(str.encode('Content-Length: ' + str(os.stat(ok).st_size) + '\r\n'))
+        message=''
+        if(contentType == 'html'):
+            message='Content-Type: text/html \r\n'
+        if(contentType == 'css'):
+            message='Content-Type: text/css \r\n'
+        if(contentType == 'js'):
+            message='Content-Type: application/js \r\n'  
+        if(contentType == 'png'):
+            message='Content-Type: text/png \r\n'
+        if(contentType == 'jpg' or contentType == 'jpeg'):
+            message='Content-Type: text/jpeg \r\n'
+        if(contentType == 'gif'):
+            message='Content-Type: text/gif \r\n'
+        if(contentType == 'ico'):
+            message='Content-Type: image/x-icon \r\n'
+        
+        print(message)
+        clientsocket.sendall(str.encode(message))
+
+        clientsocket.sendall(str.encode('Content-Encoding: gzip \r\n'))
+        print('Server: Serverul meu PW \r\n')
+        clientsocket.sendall(str.encode('Server: Serverul meu PW \r\n'))
+        clientsocket.sendall(str.encode('\r\n'))
+
+        
+        #buf=f.read(1024)
+        buf=f.read()
+        compressedBuf=gzip.compress(buf,1)
+        clientsocket.send(compressedBuf)
+        # while (buf):
+        #     clientsocket.send(buf)
+        #     buf = f.read(1024)
+        #     compressedBuf=gzip.compress(buf,1)
+       
+
+
+    except IOError:
+        if(closed==0):
+            msg = 'Eroare! Resursa ceruta ' + numeResursa + ' nu a putut fi gasita!'
+            print (msg)
+            clientsocket.sendall(str.encode('HTTP/1.1 404 Not Found\r\n'))
+            clientsocket.sendall(str.encode('Content-Length: ' + str(len(msg.encode('utf-8'))) + '\r\n'))
+            clientsocket.sendall(str.encode('Content-Type: text/plain\r\n'))
+            clientsocket.sendall(str.encode('Server: My PW Server\r\n'))
+            clientsocket.sendall(str.encode('\r\n'))
+            clientsocket.sendall(str.encode(msg))
+
+    finally:
+        if f is not None:
+            f.close()
+
+    clientsocket.close()
+    print ('S-a terminat comunicarea cu clientul.')
+
 
 # creeaza un server socket
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,47 +149,8 @@ serversocket.listen(5)
 while True:
     print ('#########################################################################')
     print ('Serverul asculta potentiali clienti.')
-# asteapta conectarea unui client la server
-# metoda `accept` este blocanta => clientsocket, care reprezinta socket-ul corespunzator clientului conectat
+    # asteapta conectarea unui client la server
+    # metoda `accept` este blocanta => clientsocket, care reprezinta socket-ul corespunzator clientului conectat
     (clientsocket, address) = serversocket.accept()
-    print ('S-a conectat un client.')
-# se proceseaza cererea si se citeste prima linie de text
-    cerere = ''
-    linieDeStart = ''
-    while True:
-        data = clientsocket.recv(1024)
-        cerere = cerere + data.decode()
-        print ('S-a citit mesajul: \n---------------------------\n' + cerere + '\n---------------------------')
-        pozitie = cerere.find('\r\n')
-        if (pozitie > -1):
-            linieDeStart = cerere[0:pozitie]
+    _thread.start_new_thread(on_new_client, (clientsocket,address))
 
-            print ('S-a citit linia de start din cerere: ##### ' + linieDeStart + ' #####')
-            break
-    print ('S-a terminat cititrea.')
-# TODO interpretarea sirului de caractere `linieDeStart` pentru a extrage numele resursei cerute
-
-    poz1=linieDeStart.find(" ")
-    print(poz1)
-    poz2=linieDeStart.find(" ",poz1+1)
-    print(poz2)
-    numeResursa=linieDeStart[poz1+2:poz2]
-    #numeResursa.replace('\\', '/')
-    print ('Numele resursei:' + numeResursa)
-# TODO trimiterea răspunsului HTTP
-    raspuns = '' 
-    ok = find(numeResursa, "C:/Users/Ioana/Documents/an3/sem2/PW/l6/proiect1-ioanahancu/continut")
-    print(ok)
-    if (ok==-1 or ok==None):
-        raspuns = 'HTTP/1.1 404 Not Found'
-        print (raspuns)
-
-    else:
-        raspuns = "HTTP/1.1 200 OK"
-        print (raspuns)
-        print ('Content-Length: ' )
-
-
-
-    clientsocket.close()
-    print ('S-a terminat comunicarea cu clientul.')
