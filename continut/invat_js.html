@@ -1,129 +1,100 @@
-<!DOCTYPE html>
-<html lang="ro">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/stil.css" />
-    <title>JS</title>
-</head>
+<br>
 
-<body onload="getInfo()">
-    <header>
-        <h1> <img src="images/logo.jpg" alt="logo" height="150" width="200" /> Programare web cu red panda
-        </h1>
-    </header>
-    <nav>
-        <a href="index.html">Acasă</a> &nbsp; &nbsp; &nbsp;
-        <a href="inregistreaza.html">Înregistrează</a> &nbsp; &nbsp; &nbsp;
-        <a href="video.html">Video</a> &nbsp; &nbsp; &nbsp;
-        <a href="despre_html.html">Despre</a> &nbsp; &nbsp; &nbsp;
-        <a href="deseneaza.html">Desen</a> &nbsp; &nbsp; &nbsp;
-        <a class="active" href="invat_js.html">Învăț JS</a> 
-    </nav>
+<aside id="meniuaside">
+    <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+    <a href=#s1>Secțiune Informativă</a> &nbsp; &nbsp; &nbsp;
+    <a href=#s2>Secțiune Internet Loto</a> &nbsp; &nbsp; &nbsp;
+    <a href=#s3>Secțiune de desenare</a> &nbsp; &nbsp; &nbsp;
+    <a href=#s4>Secțiune Tabel</a> &nbsp; &nbsp; &nbsp;
+</aside>
 
-    <br>
+<section onload="getInfo()" id="s1" >
+    <h2>Secțiune Informativă</h2>
+    <p> Data și timpul curent: </p>
+    <div id="data"> </div>
+    <p>Adresa url: </p>
+    <div id="url"></div>
+    <p>Locația curentă: </p>
+    <div id="loc"></div>
+    <p>Nume browser: </p>
+    <div id="numeB"></div>
+    <p>Versiune browser: </p>
+    <div id="versB"></div>
+    <p>Sistem de operare folosit: </p>
+    <div id="so"></div>
+    
+</section>
 
-    <aside id="meniuaside">
-        <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
-        <a href=#s1>Secțiune Informativă</a> &nbsp; &nbsp; &nbsp;
-        <a href=#s2>Secțiune Internet Loto</a> &nbsp; &nbsp; &nbsp;
-        <a href=#s3>Secțiune de desenare</a> &nbsp; &nbsp; &nbsp;
-        <a href=#s4>Secțiune Tabel</a> &nbsp; &nbsp; &nbsp;
-    </aside>
+<section id="s2">
+    <h2>Secțiune Internet Loto</h2>
+    <form id="formLoto">
+        <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr1"> &nbsp; &nbsp; &nbsp;
+        <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr2"> &nbsp; &nbsp; &nbsp;
+        <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr3"> &nbsp; &nbsp; &nbsp;
+        <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr4"> &nbsp; &nbsp; &nbsp;
+        <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr5"> &nbsp; &nbsp; &nbsp;
+        <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr6"> &nbsp; &nbsp; &nbsp;
+        <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr7"> &nbsp; &nbsp; &nbsp;
+        <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr8"> &nbsp; &nbsp; &nbsp;
+    </form>
+    <br />
+    <button type="button" onclick="loto()">Extrage</button>
+    <br /> 
+    <br />
+    <div id="numereLoto"><br /></div>
+    <div id="numereNimerite"></div>
 
-    <section id="s1" >
-        <h2>Secțiune Informativă</h2>
-        <p> Data și timpul curent: </p>
-        <div id="data"> </div>
-        <p>Adresa url: </p>
-        <div id="url"></div>
-        <p>Locația curentă: </p>
-        <div id="loc"></div>
-        <p>Nume browser: </p>
-        <div id="numeB"></div>
-        <p>Versiune browser: </p>
-        <div id="versB"></div>
-        <p>Sistem de operare folosit: </p>
-        <div id="so"></div>
+
+</section>
+
+
+<section id="s3">
+    <h2>Secțiune de desenare</h2>
+    <div>Culoare de desenat: <input type="color" id="culoareDesen"></div>
+    <br />
+    <div>Culoare de fill: <input type="color" id="culoareFill"></div>
+    <br />
+    
+
+    <canvas width="1000" height="400" id="plansa"></canvas> <!--onclick="desenare(event)"-->
+
+    
+
+
+    <!--<div id="mousePos">Aici coordonate:</div>-->
+    
+    
+
+</section>
+
+
+<section id="s4">
+    <h2>Secțiune Tabel</h2>
+    <table id="t4">
+        <tr>
+            <td>Prima coloană</td>
+            <td>A doua coloană</td>
+
+        </tr>
         
-    </section>
-
-    <section id="s2">
-        <h2>Secțiune Internet Loto</h2>
-        <form id="formLoto">
-            <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr1"> &nbsp; &nbsp; &nbsp;
-            <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr2"> &nbsp; &nbsp; &nbsp;
-            <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr3"> &nbsp; &nbsp; &nbsp;
-            <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr4"> &nbsp; &nbsp; &nbsp;
-            <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr5"> &nbsp; &nbsp; &nbsp;
-            <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr6"> &nbsp; &nbsp; &nbsp;
-            <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr7"> &nbsp; &nbsp; &nbsp;
-            <input type="text" name="nr" pattern="[A-Z0-9]{2}" id="nr8"> &nbsp; &nbsp; &nbsp;
-        </form>
+    </table>
+    <br />
+    <div>
+        Poziție: <input type="text" id="poz">
+        <br/>
+        <br/>
+        Culoare: <input type="color" id="culoareCelula">
         <br />
-        <button type="button" onclick="loto()">Extrage</button>
-        <br /> 
-        <br />
-        <div id="numereLoto"><br /></div>
-        <div id="numereNimerite"></div>
-
-
-    </section>
-
-
-    <section id="s3">
-        <h2>Secțiune de desenare</h2>
-        <div>Culoare de desenat: <input type="color" id="culoareDesen"></div>
-        <br />
-        <div>Culoare de fill: <input type="color" id="culoareFill"></div>
-        <br />
+        <br/>
+        <button type="button" onclick="linieNoua()">Linie</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="button" onclick="coloanaNoua()">Coloană</button>
         
+    </div>
 
-        <canvas width="1000" height="400" id="plansa"></canvas> <!--onclick="desenare(event)"-->
+    
 
-        
+</section>
 
-
-        <!--<div id="mousePos">Aici coordonate:</div>-->
-        
-        
-
-    </section>
-
-
-    <section id="s4">
-        <h2>Secțiune Tabel</h2>
-        <table id="t4">
-            <tr>
-                <td>Prima coloană</td>
-                <td>A doua coloană</td>
-
-            </tr>
-            
-        </table>
-        <br />
-        <div>
-            Poziție: <input type="text" id="poz">
-            <br/>
-            <br/>
-            Culoare: <input type="color" id="culoareCelula">
-            <br />
-            <br/>
-            <button type="button" onclick="linieNoua()">Linie</button>
-            &nbsp; &nbsp; &nbsp;
-            <button type="button" onclick="coloanaNoua()">Coloană</button>
-            
-        </div>
-
-        
-
-    </section>
-
-    <script src="js/script.js"></script>
-    <footer>
-        <p> &copy; 2020.Programare web</p>
-    </footer>
-</body>
-
-</html>
+<script src="js/script.js"></script>

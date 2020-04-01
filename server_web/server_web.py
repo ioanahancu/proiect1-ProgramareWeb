@@ -56,7 +56,7 @@ def on_new_client(clientsocket, addr):
     ok=-1
     fisierePosibile=['continut', 'continut/css', 'continut/images', 'continut/js']
     k=0
-    pathOrig="C:/Users/Ioana/Documents/an3/sem2/PW/l6/proiect1-ioanahancu/"
+    pathOrig="C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/"
     path=pathOrig
     while(k<4):
         path += fisierePosibile[k]
@@ -99,6 +99,10 @@ def on_new_client(clientsocket, addr):
             message='Content-Type: text/gif \r\n'
         if(contentType == 'ico'):
             message='Content-Type: image/x-icon \r\n'
+        if(contentType == 'json'):
+            message='Content-Type: application/json \r\n'
+        if(contentType == 'xml'):
+            message='Content-Type: application/xml \r\n'
         
         print(message)
         clientsocket.sendall(str.encode(message))
