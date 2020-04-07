@@ -26,6 +26,7 @@ function getInfo()
         x.innerHTML = "Latitude: " + position.coords.latitude +
         "<br>Longitude: " + position.coords.longitude;
     }
+    
 }
 
 function loto()
@@ -86,7 +87,7 @@ function getMousePos(canvas, evt)
     
 }
 
-document.getElementById("plansa").addEventListener('click', desenare);
+//document.getElementById("plansa").addEventListener('click', desenare);
 function desenare(event)
 {
     var colDesen=document.getElementById("culoareDesen").value;
@@ -189,4 +190,53 @@ function schimbaContinut(resursa, jsFisier=null, jsFunctie=null)
     };
     xhttp.open("GET", resursa + '.html', true);
     xhttp.send();
+}
+
+function verificare()
+{
+    var user=document.getElementById("utilizator").value.toString();
+    var pass=document.getElementById("parola").value.toString();
+    
+    var data_file = "../resurse/utilizatori.json";
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status==200){
+            var obj=JSON.parse(this.responseText);
+            var x=obj[0];
+            
+            if(user==x.utilizator && pass==x.parola)
+            {
+                alert("Autentificare reușită");
+            }
+            else{
+                alert("Autentificare eșuată");
+            }
+        }
+    };
+
+    xhttp.open("GET", data_file, true);
+    xhttp.send();
+
+}
+
+function inregistreaza(formular)
+{
+    var user=document.getElementById("uname").value.toString();
+    var pass=document.getElementById("password").value.toString();
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Cerere trimisă");
+        }
+    };
+    xhttp.open("POST", "api/utilizatori", true);
+    //xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    
+    
+    xhttp.send(new FormData(formular));
+  
+
+ 
+
 }

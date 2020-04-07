@@ -96,7 +96,7 @@ table, td {
 input {
     background-color: #6C5B7B;
     color: #F8B195;
-    size: 15px;
+    /*size: 15px; */
     text-align: center;
     transition: width 0.4s ease-in-out;
 }
@@ -153,7 +153,7 @@ form {
     #formLoto input{
         text-align: left;
         font-size: 12px;
-        padding: none;
+        /*padding: none;*/
         width: 100%;
     }
 
@@ -192,7 +192,7 @@ form {
     
 }
 
-#s2 button, #s4 button{
+button {
     background-image: linear-gradient(#163957, #C06C84);
     color: #F8B195;
     border-color: #F8B195;
@@ -243,3 +243,4 @@ canvas {
 #poz:focus, #culoareCelula:focus {
     width: 30%;
 }
+

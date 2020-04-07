@@ -2,6 +2,8 @@ import socket
 import os
 import _thread
 import gzip
+import xml.dom.minidom
+import json
 
 def find(name, path):
     for root, dirs, files in os.walk(path):
@@ -9,6 +11,12 @@ def find(name, path):
             return os.path.join(root, name).replace('\\', '/')
         else:
             return -1
+
+def fix_element(elem):
+    if elem[-1] == ':':
+        return '"{}":'.format(elem[:-1])
+    else:
+        return elem
 
 def on_new_client(clientsocket, addr):
     closed=0
@@ -46,6 +54,38 @@ def on_new_client(clientsocket, addr):
     if(poz3>-1):
         numeResursa=numeResursa[poz3+1:]
     print ('Numele resursei:' + numeResursa)
+    if(numeResursa=="utilizatori"):
+        formular=cerere[cerere.find('uname'):]
+        print(formular)
+        print(' ')
+        formular=formular.replace("="," : ")
+        formular=formular.replace('&', ' ,\n\t ')
+        formular=',\n\t{\n\t\t '+ formular + " }\n]"
+        formular=formular.replace(' ', '\"')
+       
+        print(formular)
+        #formular=json.dumps(formular)
+        #print(formular)
+
+        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/continut/resurse/utilizatori.json","r")       
+        lines = users.readlines()
+
+        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/continut/resurse/utilizatori.json","w")       
+
+        for line in lines:
+            if line.strip("\n") != "]":
+                users.write(line)
+        
+        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/continut/resurse/utilizatori.json","a")
+
+        users.writelines('\n')
+        users.writelines(formular)
+        users.writelines('\n')
+        users.close()
+       
+        clientsocket.sendall(str.encode("OK!"))
+        return
+
     contentType = numeResursa[numeResursa.find('.')+1:]
     print('Tip resursa: '+contentType)
     ### Cerinta 1 ###
@@ -54,11 +94,11 @@ def on_new_client(clientsocket, addr):
     # TODO trimiterea răspunsului HTTP
     linieStartRaspuns = '' 
     ok=-1
-    fisierePosibile=['continut', 'continut/css', 'continut/images', 'continut/js']
+    fisierePosibile=['continut', 'continut/css', 'continut/images', 'continut/js', 'continut/resurse']
     k=0
     pathOrig="C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/"
     path=pathOrig
-    while(k<4):
+    while(k<5):
         path += fisierePosibile[k]
         ok = find(numeResursa, path)
         if(ok!=-1):
@@ -77,6 +117,7 @@ def on_new_client(clientsocket, addr):
 
     f = None
     try:
+        
         f=open(ok, 'rb')
 
         print (linieStartRaspuns)
