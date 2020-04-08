@@ -67,16 +67,16 @@ def on_new_client(clientsocket, addr):
         #formular=json.dumps(formular)
         #print(formular)
 
-        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/continut/resurse/utilizatori.json","r")       
+        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l8/proiect1-ioanahancu/continut/resurse/utilizatori.json","r")       
         lines = users.readlines()
 
-        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/continut/resurse/utilizatori.json","w")       
+        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l8/proiect1-ioanahancu/continut/resurse/utilizatori.json","w")       
 
         for line in lines:
             if line.strip("\n") != "]":
                 users.write(line)
         
-        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/continut/resurse/utilizatori.json","a")
+        users=open("C:/Users/Ioana/Documents/an3/sem2/PW/l8/proiect1-ioanahancu/continut/resurse/utilizatori.json","a")
 
         users.writelines('\n')
         users.writelines(formular)
@@ -96,7 +96,7 @@ def on_new_client(clientsocket, addr):
     ok=-1
     fisierePosibile=['continut', 'continut/css', 'continut/images', 'continut/js', 'continut/resurse']
     k=0
-    pathOrig="C:/Users/Ioana/Documents/an3/sem2/PW/l7/proiect1-ioanahancu/"
+    pathOrig="C:/Users/Ioana/Documents/an3/sem2/PW/l8/proiect1-ioanahancu/"
     path=pathOrig
     while(k<5):
         path += fisierePosibile[k]

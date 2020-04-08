@@ -204,7 +204,7 @@ button {
     text-align: left;
 }
 
-#formLoto input{
+#formLoto input, #formCump input {
     width: 10%;
     padding: 12px 20px;
     margin: 8px 0;
