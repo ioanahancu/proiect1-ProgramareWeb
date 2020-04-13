@@ -1,11 +1,13 @@
 function getInfo()
 {
-    var myVar = setInterval(myTimer, 1000);
+    
 
     function myTimer() {
     var d = new Date();
     document.getElementById("data").innerHTML = d;
     }
+
+    var myVar = setInterval(myTimer, 1000);
 
     document.getElementById("url").innerHTML=location.href;
     document.getElementById("loc").innerHTML=getLocation();    
@@ -105,6 +107,10 @@ function desenare(event)
     
     c.addEventListener('click', 
     function(evt){
+        
+        colDesen=document.getElementById("culoareDesen").value;
+        colFill=document.getElementById("culoareFill").value;
+
         var mousePos=getMousePos(c, evt);
         //var message = "Message 2Mouse coord: " + mousePos.x + ',' + mousePos.y;
         //document.getElementById("mousePos").innerHTML=message;
@@ -240,3 +246,4 @@ function inregistreaza(formular)
  
 
 }
+

@@ -54,10 +54,11 @@ def on_new_client(clientsocket, addr):
     if(poz3>-1):
         numeResursa=numeResursa[poz3+1:]
     print ('Numele resursei:' + numeResursa)
+
     if(numeResursa=="utilizatori"):
         formular=cerere[cerere.find('uname'):]
-        print(formular)
-        print(' ')
+        #print(formular)
+        #print(' ')
         formular=formular.replace("="," : ")
         formular=formular.replace('&', ' ,\n\t ')
         formular=',\n\t{\n\t\t '+ formular + " }\n]"

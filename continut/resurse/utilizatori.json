@@ -4,4 +4,19 @@
 		"parola": "test"
 	}
 	
+
+,
+	{
+		"uname":"utilizator+nou",
+	"password":"asada",
+	"lname":"ion",
+	"fname":"pop",
+	"email":"",
+	"telefon":"",
+	"culoare":"%23000000",
+	"data":"",
+	"ora":"",
+	"varsta":"50",
+	"adresaurl":"",
+	"descriere":""}
 ]
