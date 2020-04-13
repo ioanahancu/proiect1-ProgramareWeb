@@ -1,13 +1,13 @@
-function getInfo()
-{
-    
-
-    function myTimer() {
+var myVar;
+function myTimer() {
     var d = new Date();
     document.getElementById("data").innerHTML = d;
     }
 
-    var myVar = setInterval(myTimer, 1000);
+function getInfo()
+{
+    
+    myVar = setInterval(myTimer, 1000);
 
     document.getElementById("url").innerHTML=location.href;
     document.getElementById("loc").innerHTML=getLocation();    
@@ -173,6 +173,7 @@ function coloanaNoua()
 
 function schimbaContinut(resursa, jsFisier=null, jsFunctie=null)
 {
+    clearInterval(myVar);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status==200){
