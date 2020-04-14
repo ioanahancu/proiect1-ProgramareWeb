@@ -19,4 +19,20 @@
 	"varsta":"50",
 	"adresaurl":"",
 	"descriere":""}
+
+,
+	{
+		"uname":"hello",
+	"password":"it-sme",
+	"lname":"",
+	"fname":"",
+	"email":"",
+	"telefon":"",
+	"culoare":"%23000000",
+	"data":"",
+	"ora":"",
+	"varsta":"34",
+	"adresaurl":"",
+	"descriere":""}
+
 ]

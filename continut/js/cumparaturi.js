@@ -1,4 +1,4 @@
-let lista_produse=[];
+var lista_produse=[];
 var w;
 if(typeof(Worker) !== "undefined") {
 	if (typeof(w) == "undefined") {
@@ -39,12 +39,19 @@ else{
 
 setInterval(trimite, 1000);
 
-class Produs {
+/*class Produs {
 	constructor(id, nume, cantitate) {
 		this.id = id;
 		this.nume = nume;
 		this.cantitate = cantitate;
 	}
+}*/
+
+function Produs(id, nume, cantitate)
+{
+	this.id=id;
+	this.nume=nume;
+	this.cantitate=cantitate;
 }
 
 function adaugalistaCump()
@@ -64,7 +71,7 @@ function adaugalistaCump()
 		}
 
 		lista_produse=lista_produse.map(p => new Produs(p.id, p.nume, p.cantitate));
-		let last_id=localStorage.getItem('last_id');
+		var last_id=localStorage.getItem('last_id');
 		if(last_id==null){
 			last_id=1;
 		}
@@ -72,7 +79,7 @@ function adaugalistaCump()
 			last_id=JSON.parse(last_id);
 		}
 
-		let id=last_id;
+		var id=last_id;
 		lista_produse.push(new Produs(id, nume, cantitate));
 		localStorage.setItem('produse', JSON.stringify(lista_produse));
 		localStorage.setItem('last_id', JSON.stringify(last_id+1));
@@ -85,6 +92,7 @@ function adaugalistaCump()
 
 function getLista()
 {
+				
     var table=document.getElementById("ListaCump");
     var first_line=table.insertRow();
 
@@ -93,24 +101,30 @@ function getLista()
     var cell2=first_line.insertCell();
     cell2.innerHTML="Nume Produs";
     var cell3=first_line.insertCell();
-    cell3.innerHTML="Cantitate";
+	cell3.innerHTML="Cantitate";
+	
+	if(localStorage.length==0)
+	{
+		return;
+	}
+	else
+	{
+		var last_id=localStorage.getItem('last_id');
+		last_id=JSON.parse(last_id);
 
-    var last_id=localStorage.getItem('last_id');
-    last_id=JSON.parse(last_id);
+		var produse=localStorage.getItem('produse');
+		produse=JSON.parse(produse);
+		produse=produse.map(p => new Produs(p.id, p.nume, p.cantitate));
 
-    var produse=localStorage.getItem('produse');
-	produse=JSON.parse(produse);
-	produse=produse.map(p => new Produs(p.id, p.nume, p.cantitate));
-
-    for(i=0; i<last_id-1; i++)
-    {
-        var new_line=table.insertRow();
-        var cellNr=new_line.insertCell();
-        cellNr.innerHTML=i+1;
-        var cellNume=new_line.insertCell();
-        cellNume.innerHTML=produse[i].nume;
-        var cellCant=new_line.insertCell();
-        cellCant.innerHTML=produse[i].cantitate;
-    }
-
+		for(i=0; i<last_id-1; i++)
+		{
+			var new_line=table.insertRow();
+			var cellNr=new_line.insertCell();
+			cellNr.innerHTML=i+1;
+			var cellNume=new_line.insertCell();
+			cellNume.innerHTML=produse[i].nume;
+			var cellCant=new_line.insertCell();
+			cellCant.innerHTML=produse[i].cantitate;
+		}
+	}
 }

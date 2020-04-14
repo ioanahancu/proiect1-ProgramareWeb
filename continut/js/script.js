@@ -137,8 +137,14 @@ function linieNoua(){
     var table=document.getElementById("t4");
     
     var nrCol=table.rows[0].cells.length;
+    var nrLinii=table.rows.length;
+    if(pozitie>nrLinii+1)
+    {
+        alert('Pozitia maxima este:' + (nrLinii+1));
+        return
+    }
 
-    var linie=table.insertRow(pozitie);
+    var linie=table.insertRow(pozitie-1);
 
     while(nrCol)
     {
@@ -162,13 +168,41 @@ function coloanaNoua()
     var table=document.getElementById("t4");
 
     var nrLinii=table.rows.length;
+    var nrCol=table.rows[0].cells.length;
+
+    if(pozitie>nrCol+1)
+    {
+        alert('Pozitia maxima este:' + (nrCol+1));
+        return
+    }
+
     while(nrLinii)
     {
-        var cell= table.rows[nrLinii-1].insertCell(pozitie);
+        var cell= table.rows[nrLinii-1].insertCell(pozitie-1);
         cell.innerHTML="coloană nouă";
         nrLinii--;
         cell.style.backgroundColor=culoare;
     }
+}
+
+function sectiuni41()
+{
+    var el=document.getElementById('sectiuni');   
+    el.setAttribute('class','s41');
+
+    
+}
+
+function sectiuni14()
+{
+    var el=document.getElementById('sectiuni');   
+    el.setAttribute('class','s14');
+}
+
+function sectiuni22()
+{
+    var el=document.getElementById('sectiuni');   
+    el.setAttribute('class','s22');
 }
 
 function schimbaContinut(resursa, jsFisier=null, jsFunctie=null)
